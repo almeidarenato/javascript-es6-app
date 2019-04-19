@@ -1,21 +1,37 @@
+import api from "./api";
 class App {
   constructor() {
     this.repositories = [];
     this.formElement = document.querySelector("#repo-form");
     this.listElement = document.querySelector("#repo-list");
+    this.inputElement = document.querySelector("input[name=repository]");
     this.registraEventos();
   }
   registraEventos() {
     this.formElement.onsubmit = event => this.adicionaRepositorio(event);
   }
-  adicionaRepositorio(event) {
+  async adicionaRepositorio(event) {
     event.preventDefault();
+    const novoRepositorio = this.inputElement.value;
+
+    if (novoRepositorio.lenght === 0) return;
+
+    const response = await api.get(`/repos/${novoRepositorio}`);
+    //console.log(response.data);
+    const {
+      name,
+      description,
+      html_url,
+      owner: { avatar_url }
+    } = response.data;
+    //desestruturação para coletar os atributos do response
     this.repositories.push({
-      name: "RocketSeat",
-      description: "Tira sua idéia do papel e crie sua startup.",
-      avatar_url: "https://avatars0.githubusercontent.com/u/28929274?v=4",
-      html_url: "http://github.com/rocketseat/"
+      name,
+      description,
+      avatar_url,
+      html_url
     });
+    this.inputElement.value = "";
     this.render();
   }
   render() {
