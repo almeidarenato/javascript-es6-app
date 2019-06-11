@@ -6,6 +6,11 @@ Aplicação que tem como objetivo exibir os repositórios do Github em uma lista
 
 ![Página da Aplicação](https://media.giphy.com/media/fxa9rfdDHFYMiPANFh/giphy.gif)
 
+Acesso a página: https://almeidarenato.github.io/javascript-es6-app/public/
+
+É necessário que seja um repositório de uma página de empresa para exibir corretamente **nome/repositório**. 
+ex.: Rocketseat/rocketseat-vscode-react-native-snippets
+
 ## Recursos Utilizados
 
 ### API GitHub - https://developer.github.com/v3/
